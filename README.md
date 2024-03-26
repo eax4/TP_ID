@@ -1,6 +1,6 @@
 # TP_ID
 
-This is an open-source implementation of a thread pool in C++ that allows tasks to be enqueued with a specific thread ID and provides a mechanism to wait for the completion of tasks associated with specific thread IDs to turn ANY C++ application into a multi-threaded application with ease, providing the application catastrophic performance improvements. I made this when I was working on a huge project for TÜBİTAK's competitions, but it got rejected. So I thought it'd be a good idea to make a simple code snippet from it open-source.
+This is an open-source implementation of a thread pool in C++ that allows tasks to be enqueued with a specific thread ID and provides a mechanism to wait for the completion of tasks associated with specific thread IDs to turn any C++ application into a multi-threaded application with ease, providing the application catastrophic performance improvements. I made this when I was working on a huge project for TÜBİTAK's competitions, but it got rejected. So I thought it'd be a good idea to make a simple code snippet from it open-source.
 
 ## How to use
 Include the necessary headers:
