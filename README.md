@@ -37,7 +37,7 @@ Include the necessary headers:
    ```cpp
    threadPool.wait(1, 2);
    ```
-6. The thread pool will automatically be destroyed when the `TP_ID` object goes out of scope, waiting for all worker threads to end to avoid errors.
+The thread pool will automatically be destroyed when the `TP_ID` object goes out of scope, waiting for all worker threads to end to avoid errors.
 
 ## Example test cases:
 
