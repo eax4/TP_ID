@@ -45,6 +45,7 @@ Include the necessary headers:
 int main()
 {
  std::ios::sync_with_stdio(false);
+
  // Enqueues a task and waits for its completion
  TP_ID threadPool;
  int result = 0;
