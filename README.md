@@ -45,9 +45,9 @@ The thread pool will automatically be destroyed when the `TP_ID` object goes out
 int main()
 {
  std::ios::sync_with_stdio(false);
+ TP_ID threadPool;
 
  // Enqueues a task and waits for its completion
- TP_ID threadPool;
  int result = 0;
  threadPool.enqueue([&result]() {
   result = 42;
