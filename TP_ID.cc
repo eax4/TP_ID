@@ -8,7 +8,7 @@ struct TP_ID
  {
   threads_.reserve(tnum);
   thread_id_set_->reserve(tnum);
-  for (uint_fast8_t i = 0; i < tnum; i++)
+  for (uint_fast8_t i = 0; i < tnum; ++i)
   {
    threads_.emplace_back([this]
     {
