@@ -39,7 +39,7 @@ struct TP_ID
    thread.join();
  }
  template<typename type>
- void enqueue(type&& function, const int_fast8_t thread_id) noexcept
+ void enqueue(type&& function, const int_fast8_t&& thread_id) noexcept
  {
   {
    std::unique_lock lock(m_);
