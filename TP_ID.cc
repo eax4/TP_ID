@@ -52,7 +52,7 @@ struct TP_ID
  template<class ... thread_id_list>
  void wait(const thread_id_list&& ...thread_ids) noexcept
  {
-  std::unique_lock lock(m_);
+  std::unique_lock lock(m2_);
   condition_variable2_.wait(lock, [this, &thread_ids...] {return (!thread_id_set_->contains(thread_ids) && ...); });
  }
 private:
@@ -63,5 +63,6 @@ private:
  bool stop_ = false;
  std::shared_ptr<std::unordered_set<thread_id_type>> thread_id_set_ = std::make_shared<std::unordered_set<thread_id_type>>();
  std::mutex m_;
+ std::mutex m2_;
  std::condition_variable condition_variable_;
 };
