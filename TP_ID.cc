@@ -1,3 +1,8 @@
+#include <functional>
+#include <mutex>
+#include <deque>
+#include <unordered_set>
+
 struct TP_ID
 {
  explicit TP_ID(const uint&& tnum = std::thread::hardware_concurrency()) noexcept
