@@ -36,6 +36,9 @@ struct TP_ID
  {
   stop_ = true;
   condition_variable_.notify_all();
+  if (thread_id_set_ != nullptr)
+   for (const thread_id_type thread_id : *thread_id_set_)
+    wait(std::move(thread_id));
   for (auto& thread : threads_)
    thread.join();
  }
