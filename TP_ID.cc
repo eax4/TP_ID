@@ -5,7 +5,7 @@
 
 struct TP_ID
 {
- explicit TP_ID(const uint&& tnum = std::thread::hardware_concurrency()) noexcept
+ explicit TP_ID(const uint& tnum = std::thread::hardware_concurrency()) noexcept
  {
   threads_.reserve(tnum);
   thread_id_set_->reserve(tnum);
@@ -43,7 +43,7 @@ struct TP_ID
    thread.join();
  }
  template<typename type>
- void enqueue(type&& function, const int_fast8_t&& thread_id) noexcept
+ void enqueue(type&& function, const int_fast8_t& thread_id) noexcept
  {
   {
    std::unique_lock lock(m_);
