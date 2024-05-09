@@ -2,6 +2,8 @@
 #include <mutex>
 #include <deque>
 #include <unordered_set>
+#include <thread>
+#include <condition_variable>
 
 struct TP_ID
 {
@@ -54,7 +56,7 @@ struct TP_ID
   condition_variable_.notify_one();
  }
  template<class ... thread_id_list>
- void wait(const thread_id_list&& ...thread_ids) noexcept
+ void wait(const thread_id_list& ...thread_ids) noexcept
  {
   std::unique_lock lock(m2_);
   condition_variable2_.wait(lock, [this, &thread_ids...] {return (!thread_id_set_->contains(thread_ids) && ...); });
