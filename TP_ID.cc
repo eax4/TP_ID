@@ -7,7 +7,7 @@
 
 struct TP_ID
 {
- explicit TP_ID(const uint& tnum = std::thread::hardware_concurrency()) noexcept
+ explicit TP_ID(const uint_fast8_t& tnum = std::thread::hardware_concurrency()) noexcept
  {
   threads_.reserve(tnum);
   thread_id_set_->reserve(tnum);
