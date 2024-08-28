@@ -45,21 +45,21 @@ struct TP_ID
    thread.join();
  }
  template<typename type>
- void enqueue(type&& function, const thread_id_type thread_id) noexcept
+ void enqueue(type&& function, const int_fast8_t thread_id) noexcept
  {
   {
    std::unique_lock lock(m_);
-   condition_variable2_.wait(lock, [this] {return !thread_id_set_->contains(thread_id); });
+   condition_variable2_.wait(lock, [this] { return !thread_id_set_->contains(thread_id); });
    tasks_.emplace_back(std::make_pair(thread_id, std::forward<type>(function)));
   }
   thread_id_set_->emplace(thread_id);
   condition_variable_.notify_one();
  }
- template<thread_id_type... thread_id_list>
- void wait(const thread_id_list ...thread_ids) noexcept
+ template<typename... thread_id_list, typename = int_fast8_t>
+ void wait(thread_id_list ...thread_ids) noexcept
  {
   std::unique_lock lock(m2_);
-  condition_variable2_.wait(lock, [this] {return (!thread_id_set_->contains(thread_ids) && ...); });
+  condition_variable2_.wait(lock, [this] { return (!thread_id_set_->contains(thread_ids) && ...); });
  }
 private:
  typedef int_fast8_t thread_id_type;
@@ -71,4 +71,3 @@ private:
  std::mutex m_;
  std::mutex m2_;
  std::condition_variable condition_variable_;
-};
