@@ -49,7 +49,7 @@ struct TP_ID
  {
   {
    std::unique_lock lock(m_);
-   condition_variable2_.wait(lock, [this] { return !thread_id_set_->contains(thread_id); });
+   condition_variable2_.wait(lock, [this, thread_id] { return !thread_id_set_->contains(thread_id); });
    tasks_.emplace_back(std::make_pair(thread_id, std::forward<type>(function)));
   }
   thread_id_set_->emplace(thread_id);
@@ -59,7 +59,7 @@ struct TP_ID
  void wait(thread_id_list ...thread_ids) noexcept
  {
   std::unique_lock lock(m2_);
-  condition_variable2_.wait(lock, [this] { return (!thread_id_set_->contains(thread_ids) && ...); });
+  condition_variable2_.wait(lock, [this, thread_ids...] { return (!thread_id_set_->contains(thread_ids) && ...); });
  }
 private:
  typedef int_fast8_t thread_id_type;
@@ -71,3 +71,4 @@ private:
  std::mutex m_;
  std::mutex m2_;
  std::condition_variable condition_variable_;
+};
