@@ -45,7 +45,7 @@ struct TP_ID
    thread.join();
  }
  template<typename type>
- void enqueue(type&& function, const int_fast8_t thread_id) noexcept
+ void enqueue(type&& function, const thread_id_type thread_id) noexcept
  {
   {
    std::unique_lock lock(m_);
@@ -55,7 +55,7 @@ struct TP_ID
   thread_id_set_->emplace(thread_id);
   condition_variable_.notify_one();
  }
- template<class ... thread_id_list>
+ template<thread_id_type ... thread_id_list>
  void wait(const thread_id_list ...thread_ids) noexcept
  {
   std::unique_lock lock(m2_);
