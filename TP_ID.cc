@@ -55,7 +55,7 @@ struct TP_ID
   thread_id_set_->emplace(thread_id);
   condition_variable_.notify_one();
  }
- template<thread_id_type ... thread_id_list>
+ template<thread_id_type... thread_id_list>
  void wait(const thread_id_list ...thread_ids) noexcept
  {
   std::unique_lock lock(m2_);
