@@ -59,7 +59,7 @@ struct TP_ID
  void wait(const thread_id_list ...thread_ids) noexcept
  {
   std::unique_lock lock(m2_);
-  condition_variable2_.wait(lock, [this, &thread_ids...] {return (!thread_id_set_->contains(thread_ids) && ...); });
+  condition_variable2_.wait(lock, [this] {return (!thread_id_set_->contains(thread_ids) && ...); });
  }
 private:
  typedef int_fast8_t thread_id_type;
