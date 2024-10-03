@@ -1,3 +1,5 @@
+// this is a test code, this only (sort of?) works on debug mode(no optimizations)
+
 #include <functional>
 #include <mutex>
 #include <deque>
