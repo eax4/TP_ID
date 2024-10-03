@@ -16,11 +16,11 @@ struct atomic_deque
 	{
 		return !head_.load(std::memory_order_consume);
 	}
-	T pop_and_front() noexcept
+	T&& pop_and_front() noexcept
 	{
 		node* oldhead = head_.load(std::memory_order_consume);
 		head_.store(oldhead->next, std::memory_order_release);
-		return oldhead->data;
+		return std::move(oldhead->data);
 	}
 	void emplace_back(T&& data) noexcept
 	{
