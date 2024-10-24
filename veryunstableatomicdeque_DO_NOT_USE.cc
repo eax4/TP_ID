@@ -13,7 +13,7 @@
 template<typename T>
 struct atomic_deque
 {
-	explicit	atomic_deque() noexcept = default;
+	explicit atomic_deque() noexcept = default;
 	bool empty() noexcept
 	{
 		return !head_.load(std::memory_order_consume);
