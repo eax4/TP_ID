@@ -11,7 +11,7 @@ struct TP_ID
  {
   threads_.reserve(tnum);
   thread_id_set_->reserve(tnum);
-  for (uint_fast8_t i = 0; i < tnum; i++)
+  for (uint_fast32_t i = 0; i < tnum; i++)
   {
    threads_.emplace_back([this]
     {
@@ -45,7 +45,7 @@ struct TP_ID
    thread.join();
  }
  template<typename type>
- void enqueue(type&& function, const int_fast8_t thread_id) noexcept
+ void enqueue(type&& function, const int_fast32_t thread_id) noexcept
  {
   {
    std::unique_lock lock(m_);
