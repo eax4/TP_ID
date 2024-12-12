@@ -7,11 +7,11 @@
 
 struct TP_ID
 {
- explicit TP_ID(const uint_fast32_t& tnum = std::thread::hardware_concurrency()) noexcept
+ explicit TP_ID(const uint& tnum = std::thread::hardware_concurrency()) noexcept
  {
   threads_.reserve(tnum);
   thread_id_set_->reserve(tnum);
-  for (uint_fast32_t i = 0; i < tnum; i++)
+  for (uint i = 0; i < tnum; i++)
   {
    threads_.emplace_back([this]
     {
@@ -45,7 +45,7 @@ struct TP_ID
    thread.join();
  }
  template<typename type>
- void enqueue(type&& function, const int_fast32_t thread_id) noexcept
+ void enqueue(type&& function, const int thread_id) noexcept
  {
   {
    std::unique_lock lock(m_);
@@ -55,14 +55,14 @@ struct TP_ID
   thread_id_set_->emplace(thread_id);
   condition_variable_.notify_one();
  }
- template<typename... thread_id_list, typename = int_fast32_t>
+ template<typename... thread_id_list, typename = int>
  void wait(thread_id_list ...thread_ids) noexcept
  {
   std::unique_lock lock(m2_);
   condition_variable2_.wait(lock, [this, thread_ids...] { return (!thread_id_set_->contains(thread_ids) && ...); });
  }
 private:
- typedef int_fast32_t thread_id_type;
+ typedef int thread_id_type;
  std::deque<std::pair<thread_id_type, std::function<void()>>> tasks_;
  std::vector<std::thread> threads_;
  std::condition_variable condition_variable2_;
