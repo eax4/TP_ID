@@ -16,7 +16,7 @@ struct TP_ID
    threads_.emplace_back([this]
     {
      std::function<void()> function;
-     thread_id_type thread_id;
+     int thread_id;
      while (true)
      {
       {
@@ -39,7 +39,7 @@ struct TP_ID
   stop_ = true;
   condition_variable_.notify_all();
   if (thread_id_set_ != nullptr)
-   for (const thread_id_type thread_id : *thread_id_set_)
+   for (const int thread_id : *thread_id_set_)
     wait(thread_id);
   for (auto& thread : threads_)
    thread.join();
@@ -62,12 +62,11 @@ struct TP_ID
   condition_variable2_.wait(lock, [this, thread_ids...] { return (!thread_id_set_->contains(thread_ids) && ...); });
  }
 private:
- typedef int thread_id_type;
- std::deque<std::pair<thread_id_type, std::function<void()>>> tasks_;
+ std::deque<std::pair<int, std::function<void()>>> tasks_;
  std::vector<std::thread> threads_;
  std::condition_variable condition_variable2_;
  bool stop_ = false;
- std::shared_ptr<std::unordered_set<thread_id_type>> thread_id_set_ = std::make_shared<std::unordered_set<thread_id_type>>();
+ std::shared_ptr<std::unordered_set<int>> thread_id_set_ = std::make_shared<std::unordered_set<int>>();
  std::mutex m_;
  std::mutex m2_;
  std::condition_variable condition_variable_;
