@@ -9,6 +9,7 @@ This is an open-source implementation of a thread pool in C++ that allows tasks 
    #include <mutex>
    #include <deque>
    #include <unordered_set>
+   #include <iostream>
    ```
 
 2. Create an instance of the `TP_ID` struct, specifying the desired number of worker threads is optional, by default the amount of threads is the max number of threads possible on your system:
