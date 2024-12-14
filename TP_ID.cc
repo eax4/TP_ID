@@ -7,11 +7,11 @@
 
 struct TP_ID
 {
- explicit TP_ID(const uint& tnum = std::thread::hardware_concurrency()) noexcept
+ explicit TP_ID(const unsigned int& tnum = std::thread::hardware_concurrency()) noexcept
  {
   threads_.reserve(tnum);
   thread_id_set_->reserve(tnum);
-  for (uint i = 0; i < tnum; i++)
+  for (unsigned int i = 0; i < tnum; i++)
   {
    threads_.emplace_back([this]
     {
