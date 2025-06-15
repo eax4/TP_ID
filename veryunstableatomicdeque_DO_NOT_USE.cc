@@ -1,4 +1,4 @@
-// this is a test code, this only (sort of?) works on debug mode(no optimizations)
+// this is a test code, this only (sort of?) works on debug mode(no optimizations), I've only made this as a test code
 
 #include <functional>
 #include <mutex>
