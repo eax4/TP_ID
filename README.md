@@ -98,6 +98,5 @@ int main()
 - The `wait` function is used to wait for the completion of tasks associated with specific thread IDs. It can take multiple thread IDs as arguments.
 - The thread pool uses `std::deque` to store the tasks, `std::unordered_set` to keep track of active thread IDs, and `std::condition_variable` for thread synchronization to avoid runtime errors.
 - The thread pool is thread-safe and can be used from multiple threads simultaneously.
-- yes i ai genned this readme cause im too lazy
 
 Feel free to use and modify this code according to your needs.
